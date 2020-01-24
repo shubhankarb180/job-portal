@@ -1,0 +1,52 @@
+.wrapper { 
+    text-align: center ;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.post-list {
+    width : 60%;
+    margin: 0 auto;
+}
+
+.avatar-img { 
+    margin : 0.5% 2% 0.5% 0.5%;
+}
+
+.job-title-flex { 
+    display: flex;
+    margin-bottom: 1%;
+}
+
+.job-title { 
+    margin-top: 1%;
+}
+
+.description-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+.description-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: right;
+    width: 50%;
+}
+.description-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.green-color {
+    color : green;
+    font-weight: bold;
+}
+
+.padding-bottom {
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
