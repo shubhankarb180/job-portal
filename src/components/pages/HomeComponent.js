@@ -17,12 +17,13 @@ class HomeComponent extends React.Component {
         posts : null,
         hits : 0,
         showPosts : false,
-        skillDisabled : false    
+        skillDisabled : false,
+        totalJobs : null    
       };
 
 
     componentDidMount() {
-            
+            this.getTotalJobs();
     }
 
     setDescription = (e) => {
@@ -35,6 +36,28 @@ class HomeComponent extends React.Component {
         this.setState({
             location : e.target.value
         });
+    }
+
+    getTotalJobs = async () => {
+        let postsCount = 0; 
+        const page1Response = await fetch(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=1`);
+        const p1 = await page1Response.json();
+        postsCount = postsCount + p1.length;
+    
+        let i = 2;
+        do {
+          let pageResponse = await fetch(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=${i}`);
+          let page = await pageResponse.json();
+          if (page.length === 0) { break;}
+          postsCount = postsCount + page.length;
+          i = i+1;
+        }while( i !== 10);
+    
+        console.log(postsCount);
+
+        this.setState({
+            totalJobs : postsCount
+        }, () => console.log(this.state.totalJobs));
     }
 
     getPosts = () => {
@@ -71,7 +94,7 @@ class HomeComponent extends React.Component {
                         getPosts={this.getPosts}
                         skillDisabled={this.state.skillDisabled}
                     />
-                    { (this.state.posts != null && this.state.posts.length > 0 && this.state.showPosts) ? <PostList posts={this.state.posts} /> : ''  }
+                    { (this.state.posts != null && this.state.posts.length > 0 && this.state.showPosts) ? <PostList posts={this.state.posts} totalJobs={this.state.totalJobs} /> : ''  }
                 </div>
             </div>
         );

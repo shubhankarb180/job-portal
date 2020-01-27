@@ -10,3 +10,8 @@
   padding: 30px 50px;
   margin: 20px 0;
 }
+
+.footer { 
+  text-align: center;
+  bottom: 0;
+}

@@ -6,10 +6,14 @@
     margin-top: 2%;
 }
 
+.inner-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .post-title {
     font-size: 2em;
     font-weight: 600;
-    
 }
 
 .green-color { 
@@ -18,4 +22,24 @@
 
 .left-column {
     width : 60%;
+}
+
+.right-column {
+    width: 30%;
+    padding:  1% 0% 1% 2%;
+}
+
+.company-logo { 
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.post-description {
+    margin-top: 4%;
+}
+
+.link-home { 
+    padding-bottom: 2%;
 }

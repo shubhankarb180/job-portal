@@ -50,3 +50,22 @@
     margin-bottom: 1%;
     margin-top: 1%;
 }
+
+.sort-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.sort-button {
+    display: flex;
+}
+
+.sort-text {
+    font-size: small;
+    color : blue;
+}
+
+.footer { 
+    text-align: center;
+    bottom: 0;
+  }

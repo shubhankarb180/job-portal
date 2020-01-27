@@ -1,11 +1,10 @@
 import React from 'react';
-import { Layout, Menu, Spin } from 'antd';
+import { Layout, Spin } from 'antd';
 import '../../App.css';
-import { Link } from 'react-router-dom';
 
 import { Post } from '../post/post.component';
 
-const { Header } = Layout;
+const { Header, Footer } = Layout;
 
 class PostComponent extends React.Component { 
 
@@ -36,18 +35,12 @@ class PostComponent extends React.Component {
         return(
             <div>
                 <Header>
-                    <Menu
-                        theme="dark"
-                        mode="horizontal"
-                        defaultSelectedKeys={['0']}
-                        style={{ lineHeight: '64px' }}
-                    >
-                        <Menu.Item key="home"><Link to='/'>Home</Link></Menu.Item>
-                    </Menu>
+                    <h2 style={{ color : 'white', textAlign : 'center' }}>Job Description</h2>
                 </Header>
                 {
                     this.state.company != null ? <Post company={this.state.company} /> : loader
                 }
+                <Footer className='footer'> © Created By Shubhankar Chandra Banerjee</Footer>
             </div>
         );
     }
