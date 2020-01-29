@@ -8,7 +8,7 @@ const { Footer } = Layout;
 class PostList extends React.Component { 
     
     state = {
-        sortFilter : false // Toggle Switch for Sorting
+        sortFilter : this.props.sortFilter // Toggle Switch for Sorting
     };
 
     //Function to find when the post was created 
@@ -43,63 +43,21 @@ class PostList extends React.Component {
     handleSorting = (e) => {
         this.setState({
             sortFilter : !(this.state.sortFilter)
-        }, () => console.log(this.state.sortFilter));
+        });
     }
     
     render() {
-        const posts = this.props.posts;
+        
+        const receivedPosts = this.props.posts;
+        
+        const filterByDatePosts = receivedPosts.filter((post,index) => { return receivedPosts.lastIndexOf(post) === index }).sort((a,b) => {
+                    let dateA = new Date(a.created_at), dateB = new Date(b.created_at);
+                    return (dateB - dateA);
+                });
 
-        if (this.state.sortFilter === true){ // Condition Check for sort 
-            
-            //Sorting the list according to the time it was created 
-            const filterByDatePosts = posts.sort((a,b) => {
-                let dateA = new Date(a.created_at), dateB = new Date(b.created_at);
-                return (dateB - dateA);
-            });
+        const posts = this.state.sortFilter === true ? filterByDatePosts : this.props.posts;//Condtition to display filter array or non filtered array 
 
-            // Post JSX to show in render
-            const postDisplay = filterByDatePosts.map((t) => {
-                let createdOn = Date.parse(t.created_at);
-                let date = this.timeAgo(createdOn);
-                return(
-                    <div>
-                        <Card className='padding-bottom' key={t.id}>
-                        <div className='job-title-flex'>
-                            <Avatar className='avatar-img' size='large' src={t.company_logo} />
-                            <h3 className="job-title"><Link to={`/company/${t.id}`} target="_blank">{t.title}</Link></h3>
-                        </div>
-                        <div className='description-info'>
-                            <div className='description-left'>
-                                <div>Location : {t.location}</div>
-                                <div>Comapany : {t.company}</div>
-                            </div>
-                            <div className='description-right'>
-                                <div className='green-color'>{t.type}</div>
-                                <div>Posted { date }</div>
-                            </div>
-                        </div>
-                    </Card>
-                    </div>
-                );
-            });
-
-            return(
-                <div className="post-list">
-                    <div className='sort-box'>
-                        <div className='sort-text'>
-                            <Button type='link' onClick={this.handleSorting}>Sort</Button>
-                        </div>
-                    </div>
-                    <div>{this.props.totalJobs}</div>
-                    {postDisplay}
-                    <Footer className='footer'> © Created By Shubhankar Chandra Banerjee</Footer>
-                </div> 
-            );
-        }
-
-        //Condition if sorting is not required 
-        else {
-
+            // Post Component 
             const postDisplay = posts.map((t) => {
                 let createdOn = Date.parse(t.created_at);
                 let date = this.timeAgo(createdOn);
@@ -139,6 +97,5 @@ class PostList extends React.Component {
         
         
     }
-}
 
 export default PostList

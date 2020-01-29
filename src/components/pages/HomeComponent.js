@@ -15,7 +15,7 @@ class HomeComponent extends React.Component {
         description : '',
         location : '',
         posts : null,
-        hits : 0,
+        sortFilter : false,
         showPosts : false,
         skillDisabled : false,
         totalJobs : null    
@@ -94,7 +94,7 @@ class HomeComponent extends React.Component {
                         getPosts={this.getPosts}
                         skillDisabled={this.state.skillDisabled}
                     />
-                    { (this.state.posts != null && this.state.posts.length > 0 && this.state.showPosts) ? <PostList posts={this.state.posts} totalJobs={this.state.totalJobs} /> : ''  }
+                    { (this.state.posts != null && this.state.posts.length > 0 && this.state.showPosts) ? <PostList posts={this.state.posts} sortFilter={this.state.sortFilter} totalJobs={this.state.totalJobs} /> : ''  }
                 </div>
             </div>
         );

@@ -26,7 +26,7 @@ export const Post = (props) => {
                 </div>
                 <div className='right-column'>
                     <Card bordered={false} title={`Company : ${props.company.company}`}>
-                        <img className='company-logo' src={props.company.company_logo} />
+                        <img className='company-logo' src={props.company.company_logo} alt=''/>
                     </Card>
                 </div>
             </div>
