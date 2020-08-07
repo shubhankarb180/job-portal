@@ -83,11 +83,11 @@ class PostList extends React.Component {
 
             return(
                 <div className="post-list">
+                <div>{this.props.totalJobs} Jobs found</div>
                     <div className='sort-box'>
                         <div className='sort-text'>
                             <Button type='link' onClick={this.handleSorting}>Sort</Button>
                         </div>
-                        <div>{this.props.totalJobs}</div>
                     </div>
                     {postDisplay}
                     <Footer className='footer'> © Created By Shubhankar Chandra Banerjee</Footer>
